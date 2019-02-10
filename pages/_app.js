@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import App, { Container } from 'next/app'
 import withRedux from 'next-redux-wrapper'
 
-import initStore from '../utils/store'
+import initStore from '../store/createStore'
 
 /* debug to log how the store is being used */
 export default withRedux(initStore, {
@@ -27,7 +27,7 @@ export default withRedux(initStore, {
 			return (
 				<Container>
 					<Head>
-						<title>Todo App</title>
+						<title>Todo App!</title>
 					</Head>
 					<Provider store={store}>
 						<Component {...pageProps} />

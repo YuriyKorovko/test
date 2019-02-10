@@ -1,6 +1,9 @@
-import { createStore, compose, applyMiddleware } from 'redux'
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
+import thunk from "redux-thunk"
 
-import rootReducer from '../reducers'
+import * as reducers from './modules';
+
+const rootReducer = combineReducers(reducers);
 
 const enhancers = compose(
 	typeof window !== 'undefined' && process.env.NODE_ENV !== 'production'
@@ -8,7 +11,7 @@ const enhancers = compose(
 		: f => f
 )
 
-const createStoreWithMiddleware = applyMiddleware()(createStore)
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
 
 export default initialState =>
 	createStoreWithMiddleware(rootReducer, initialState, enhancers)
